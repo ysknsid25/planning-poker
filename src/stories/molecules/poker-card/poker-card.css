@@ -1,0 +1,63 @@
+.storybook-poker-card {
+    width: 140px;
+    height: 200px;
+    border: 2px solid #000;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.storybook-poker-card--selected {
+    border-color: #555ab9;
+    box-shadow: 0 0 0 4px rgba(85, 90, 185, 0.3);
+    transform: translateY(-4px);
+}
+
+.storybook-poker-card__back {
+  width: 100%;
+  height: 100%;
+  background-color: #e5ccab; /* バーバリー風のベージュ */
+  background-image:
+    /* 赤の細いライン */
+    repeating-linear-gradient(0deg, transparent 0, transparent 70px, rgba(204, 0, 0, 0.5) 70px, rgba(204, 0, 0, 0.5) 72px, transparent 72px, transparent 140px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 70px, rgba(204, 0, 0, 0.5) 70px, rgba(204, 0, 0, 0.5) 72px, transparent 72px, transparent 140px),
+    /* 白の太いライン */
+    repeating-linear-gradient(0deg, transparent 0, transparent 20px, rgba(255, 255, 255, 0.6) 20px, rgba(255, 255, 255, 0.6) 40px, transparent 40px, transparent 140px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 20px, rgba(255, 255, 255, 0.6) 20px, rgba(255, 255, 255, 0.6) 40px, transparent 40px, transparent 140px),
+    /* 黒のライン（白のラインを挟むように配置） */
+    repeating-linear-gradient(0deg, transparent 0, transparent 15px, rgba(0, 0, 0, 0.8) 15px, rgba(0, 0, 0, 0.8) 20px, transparent 20px, transparent 40px, rgba(0, 0, 0, 0.8) 40px, rgba(0, 0, 0, 0.8) 45px, transparent 45px, transparent 140px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 15px, rgba(0, 0, 0, 0.8) 15px, rgba(0, 0, 0, 0.8) 20px, transparent 20px, transparent 40px, rgba(0, 0, 0, 0.8) 40px, rgba(0, 0, 0, 0.8) 45px, transparent 45px, transparent 140px);
+}
+
+
+
+.storybook-poker-card__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 12px;
+}
+
+.storybook-poker-card__top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.storybook-poker-card__number {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-weight: bold;
+    color: #333;
+    margin-top: -16px; /* Adjust visual center with icon present */
+}
