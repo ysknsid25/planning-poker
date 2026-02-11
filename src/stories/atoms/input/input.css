@@ -1,0 +1,15 @@
+.storybook-input {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.storybook-input:focus {
+  outline: none;
+  border-color: #555ab9;
+  box-shadow: 0 0 0 1px #555ab9;
+}
