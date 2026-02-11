@@ -1,0 +1,28 @@
+.storybook-icon {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0;
+}
+
+.storybook-icon--small {
+  width: 32px;
+  height: 32px;
+}
+
+.storybook-icon--medium {
+  width: 64px;
+  height: 64px;
+}
+
+.storybook-icon--large {
+  width: 128px;
+  height: 128px;
+}
+
+a.storybook-icon-wrapper {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 0;
+}

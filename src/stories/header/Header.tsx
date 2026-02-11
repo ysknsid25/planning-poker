@@ -1,9 +1,10 @@
 import { Button } from "../button/Button";
+import { Icon } from "../icon/Icon";
 import "./header.css";
 
 type User = {
     name: string;
-    imageUrl?: string;
+    imageUrl: string;
 };
 
 export interface HeaderProps {
@@ -42,14 +43,10 @@ export const Header = ({ user, onLogin, onCreateAccount }: HeaderProps) => (
             <div>
                 {user ? (
                     <>
-                        <img
+                        <Icon
+                            size="small"
                             src={user.imageUrl}
-                            style={{
-                                width: "32px",
-                                height: "32px",
-                                borderRadius: "50%",
-                                objectFit: "cover",
-                            }}
+                            alt={`${user.name}'s profile picture`}
                         />
                     </>
                 ) : (
