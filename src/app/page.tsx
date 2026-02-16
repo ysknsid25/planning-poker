@@ -5,6 +5,7 @@ import { TableList, TableListTab } from "../stories/organisms/table-list/TableLi
 import { Button } from "../stories/button/Button";
 import { Dialog } from "../stories/dialog/Dialog";
 import { Icon } from "../stories/icon/Icon";
+import { UserSearch, User } from "../stories/organisms/user-search/UserSearch";
 
 interface Member {
   id: string;
@@ -36,13 +37,25 @@ const mockRooms: RoomItem[] = [
 
 export default function HomePage() {
   const [memberDialogRoom, setMemberDialogRoom] = useState<RoomItem | null>(null);
+  const [inviteDialogRoom, setInviteDialogRoom] = useState<RoomItem | null>(null);
+  const [leaveDialogRoom, setLeaveDialogRoom] = useState<RoomItem | null>(null);
+  const [inviteSelectedUsers, setInviteSelectedUsers] = useState<User[]>([]);
+
+  const mockSearch = async (query: string): Promise<User[]> => {
+    const users: User[] = [
+      { id: "u1", name: "Alice", avatarSrc: "https://i.pravatar.cc/150?u=1" },
+      { id: "u2", name: "Bob", avatarSrc: "https://i.pravatar.cc/150?u=2" },
+      { id: "u3", name: "Charlie", avatarSrc: "https://i.pravatar.cc/150?u=3" },
+    ];
+    return users.filter((u) => u.name.toLowerCase().includes(query.toLowerCase()));
+  };
 
   const createdRoomGenerator = (item: RoomItem) => (
     <div className="flex flex-col gap-2">
       <div className="font-bold">{item.name}</div>
       <div className="flex gap-2">
         <Button size="small" label="メンバー" onClick={() => setMemberDialogRoom(item)} />
-        <Button size="small" label="招待" />
+        <Button size="small" label="招待" onClick={() => { setInviteDialogRoom(item); setInviteSelectedUsers([]); }} />
         <Button size="small" danger label="削除" />
       </div>
     </div>
@@ -53,7 +66,7 @@ export default function HomePage() {
       <div className="font-bold">{item.name}</div>
       <div className="flex gap-2">
         <Button size="small" primary label="入室" />
-        <Button size="small" danger label="退出" />
+        <Button size="small" danger label="退出" onClick={() => setLeaveDialogRoom(item)} />
       </div>
     </div>
   );
@@ -63,6 +76,7 @@ export default function HomePage() {
       <div className="font-bold">{item.name}</div>
       <div className="flex gap-2">
         <Button size="small" primary label="招待を受ける" />
+      <Button size="small" label="無視する" />
       </div>
     </div>
   );
@@ -118,6 +132,34 @@ export default function HomePage() {
         isOpen={!!memberDialogRoom}
         onClose={() => setMemberDialogRoom(null)}
         message={memberDialogContent}
+      />
+
+      <Dialog
+        isOpen={!!leaveDialogRoom}
+        onClose={() => setLeaveDialogRoom(null)}
+        message="ポーカールームから退出すると再入室できません。よろしいでしょうか？"
+        rightSlot={
+          <div className="flex gap-3">
+            <Button danger label="はい" onClick={() => setLeaveDialogRoom(null)} />
+            <Button label="いいえ" onClick={() => setLeaveDialogRoom(null)} />
+          </div>
+        }
+      />
+
+      <Dialog
+        isOpen={!!inviteDialogRoom}
+        onClose={() => setInviteDialogRoom(null)}
+        message={
+          <div className="flex flex-col gap-4 text-left">
+            <UserSearch
+              onSearch={mockSearch}
+              selectedUsers={inviteSelectedUsers}
+              onUserSelect={(user) => setInviteSelectedUsers((prev) => [...prev, user])}
+              onUserRemove={(user) => setInviteSelectedUsers((prev) => prev.filter((u) => u.id !== user.id))}
+            />
+          </div>
+        }
+        rightSlot={<Button primary label="招待" />}
       />
     </div>
   );
