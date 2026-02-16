@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import './dialog.css';
 
@@ -13,7 +15,7 @@ export interface DialogProps {
   /**
    * The message to display in the center of the dialog
    */
-  message: string;
+  message: React.ReactNode;
   /**
    * Content for the left slot (bottom left)
    */
