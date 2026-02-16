@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "../../../stories/atoms/input/Input";
 import { UserSearch, User } from "../../../stories/organisms/user-search/UserSearch";
 import { Button } from "../../../stories/button/Button";
@@ -15,6 +16,7 @@ const mockSearch = async (query: string): Promise<User[]> => {
 };
 
 export default function CreateRoomPage() {
+  const router = useRouter();
   const [roomName, setRoomName] = useState("");
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
 
@@ -31,7 +33,7 @@ export default function CreateRoomPage() {
         onUserSelect={(user) => setSelectedUsers((prev) => [...prev, user])}
         onUserRemove={(user) => setSelectedUsers((prev) => prev.filter((u) => u.id !== user.id))}
       />
-      <Button primary label="作る" />
+      <Button primary label="作る" onClick={() => router.push("/")} />
     </div>
   );
 }

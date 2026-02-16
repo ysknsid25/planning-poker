@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { TableList, TableListTab } from "../stories/organisms/table-list/TableList";
 import { Button } from "../stories/button/Button";
 import { Dialog } from "../stories/dialog/Dialog";
@@ -36,6 +37,7 @@ const mockRooms: RoomItem[] = [
 ];
 
 export default function HomePage() {
+  const router = useRouter();
   const [memberDialogRoom, setMemberDialogRoom] = useState<RoomItem | null>(null);
   const [inviteDialogRoom, setInviteDialogRoom] = useState<RoomItem | null>(null);
   const [leaveDialogRoom, setLeaveDialogRoom] = useState<RoomItem | null>(null);
@@ -65,7 +67,7 @@ export default function HomePage() {
     <div className="flex flex-col gap-2">
       <div className="font-bold">{item.name}</div>
       <div className="flex gap-2">
-        <Button size="small" primary label="入室" />
+        <Button size="small" primary label="入室" onClick={() => router.push("/poker")} />
         <Button size="small" danger label="退出" onClick={() => setLeaveDialogRoom(item)} />
       </div>
     </div>
@@ -124,7 +126,7 @@ export default function HomePage() {
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <Button primary size="small" label="部屋を作る" />
+        <Button primary size="small" label="部屋を作る" onClick={() => router.push("/room/create")} />
       </div>
       <TableList tabs={mockTabs} />
 

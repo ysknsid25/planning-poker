@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "../button/Button";
 import { Icon } from "../icon/Icon";
 import "./header.css";
@@ -11,14 +12,12 @@ type User = {
 
 export interface HeaderProps {
     user?: User;
-    onLogin?: () => void;
-    onCreateAccount?: () => void;
 }
 
-export const Header = ({ user, onLogin, onCreateAccount }: HeaderProps) => (
+export const Header = ({ user }: HeaderProps) => (
     <header>
         <div className="storybook-header">
-            <div>
+            <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
                 <svg
                     width="32"
                     height="32"
@@ -41,26 +40,18 @@ export const Header = ({ user, onLogin, onCreateAccount }: HeaderProps) => (
                     </g>
                 </svg>
                 <h1>Planning Poker</h1>
-            </div>
+            </Link>
             <div>
                 {user ? (
-                    <>
-                        <Icon
-                            size="small"
-                            src={user.imageUrl}
-                            alt={`${user.name}'s profile picture`}
-                        />
-                    </>
+                    <Icon
+                        size="small"
+                        src={user.imageUrl}
+                        alt={`${user.name}'s profile picture`}
+                    />
                 ) : (
-                    <>
-                        <Button size="small" onClick={onLogin} label="Log in" />
-                        <Button
-                            primary
-                            size="small"
-                            onClick={onCreateAccount}
-                            label="Sign up"
-                        />
-                    </>
+                    <Link href="/login">
+                        <Button size="small" label="Log in" />
+                    </Link>
                 )}
             </div>
         </div>
