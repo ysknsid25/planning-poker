@@ -1,4 +1,6 @@
-import React, { useState, ReactNode } from 'react';
+"use client";
+
+import { useState, ReactNode } from 'react';
 import { Tooltip } from '../../atoms/tooltip/Tooltip';
 import './table-list.css';
 
