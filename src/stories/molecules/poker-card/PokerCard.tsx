@@ -1,4 +1,5 @@
-import React from 'react';
+"use client";
+
 import { Icon } from '../../icon/Icon';
 import './poker-card.css';
 
