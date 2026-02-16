@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Icon } from '../../icon/Icon';
 import { Input } from '../../atoms/input/Input';
 import './user-search.css';
