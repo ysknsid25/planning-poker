@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "../button/Button";
 import { Icon } from "../icon/Icon";
 import "./header.css";
